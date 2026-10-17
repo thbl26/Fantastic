@@ -22,7 +22,7 @@ body{
  color:var(--text);
  min-height:100vh;
 }
-header{text-align:center;padding:38px 12px 25px}
+header{text-align:center;padding:35px 12px 25px}
 h1{
  font-size:clamp(30px,6vw,62px);
  letter-spacing:2px;
@@ -41,8 +41,8 @@ main{max-width:1200px;margin:auto;padding:0 15px 60px}
 h2{margin:0 0 18px;font-size:22px}
 .form{
  display:grid;
- grid-template-columns:1fr 1fr 130px auto;
- gap:10px;
+ grid-template-columns:1fr 1fr auto auto;
+ gap:12px;
  align-items:end;
 }
 label{
@@ -56,7 +56,7 @@ select,input,button{
  color:white;
  border:1px solid #425777;
  border-radius:9px;
- padding:11px;
+ padding:10px;
  font:inherit;
  min-width:0;
 }
@@ -149,6 +149,7 @@ td.team,th.team{text-align:left}
  display:flex;
  align-items:center;
  gap:7px;
+ min-width:0;
 }
 .side.home{
  justify-content:flex-end;
@@ -192,26 +193,55 @@ td.team,th.team{text-align:left}
  flex:1;
  border:0;
  background:transparent;
+ width:100%;
 }
 .pick .logo{
  width:27px;
  height:27px;
  margin:0;
 }
-.resultInput{
- text-align:center;
- font-size:20px;
- font-weight:800;
- width:100%;
+
+/* Kleine Ergebnis-Dropdowns */
+.resultBox{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:7px;
+ height:46px;
 }
+.goalSelect{
+ width:65px;
+ min-width:65px;
+ height:42px;
+ padding:5px 7px;
+ text-align:center;
+ text-align-last:center;
+ font-size:19px;
+ font-weight:800;
+ border-radius:8px;
+}
+.colon{
+ font-size:24px;
+ font-weight:900;
+ color:var(--green);
+}
+.resultLabel{text-align:center}
+
 @media(max-width:760px){
- .form{grid-template-columns:1fr 1fr}
+ .form{
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+ }
  .form button{grid-column:span 2}
  .panel{padding:13px}
  .matchteams{gap:6px}
  .side{font-size:12px;flex-wrap:wrap}
  .logo{width:25px;height:25px}
  th,td{padding:9px 7px}
+ .goalSelect{
+  width:58px;
+  min-width:58px;
+ }
 }
 </style>
 </head>
@@ -225,9 +255,10 @@ td.team,th.team{text-align:left}
 
 <main>
 
-<!-- SPIEL ERSTELLEN -->
+<!-- SPIEL EINTRAGEN -->
 <section class="panel">
 <h2>⚽ Spiel eintragen</h2>
+
 <form id="gameForm" class="form">
 
 <div>
@@ -247,33 +278,38 @@ td.team,th.team{text-align:left}
 </div>
 
 <div>
-<label for="result">Ergebnis</label>
-<input
- id="result"
- class="resultInput"
- type="text"
- placeholder="3:2"
- inputmode="text"
- required
->
+<label class="resultLabel">Ergebnis</label>
+<div class="resultBox">
+<select id="hg" class="goalSelect"></select>
+<span class="colon">:</span>
+<select id="ag" class="goalSelect"></select>
+</div>
 </div>
 
 <button type="submit">Spiel speichern</button>
+
 </form>
 <p class="muted">
-Du kannst alle Begegnungen selbst bestimmen.
+Begegnungen frei auswählen und Tore über die kleinen Dropdowns festlegen.
 </p>
 </section>
 
-<!-- ERGEBNISSE -->
+<!-- SPIELE UND ERGEBNISSE -->
 <section class="panel">
 <h2>📅 Spiele & Ergebnisse</h2>
 <div id="matches"></div>
+
 <div class="actions">
-<button id="exportBtn" class="secondary">💾 Daten sichern</button>
-<button id="importBtn" class="secondary">📂 Daten importieren</button>
+<button id="exportBtn" class="secondary">
+💾 Daten sichern
+</button>
+<button id="importBtn" class="secondary">
+📂 Daten importieren
+</button>
 <input id="importFile" type="file" accept=".json" hidden>
-<button id="resetBtn" class="danger">Alle Spiele löschen</button>
+<button id="resetBtn" class="danger">
+Alle Spiele löschen
+</button>
 </div>
 </section>
 
@@ -287,7 +323,7 @@ Du kannst alle Begegnungen selbst bestimmen.
 <div id="clubs" class="clubgrid"></div>
 </section>
 
-<!-- TABELLE GANZ UNTEN -->
+<!-- TABELLE IMMER GANZ UNTEN -->
 <section class="panel">
 <div class="tools">
 <h2 style="margin:0">📊 Tabelle</h2>
@@ -407,6 +443,7 @@ function logo(i,big=false){
  const domain=teams[i][1];
  const initials=name.split(" ").map(w=>w[0]).join("").slice(0,3).toUpperCase();
  const url="https://www.google.com/s2/favicons?domain="+encodeURIComponent(domain)+"&sz=128";
+
  return `<span class="logoWrap">
  <img class="logo ${big?'big':''}"
  src="${url}" alt="${esc(name)}" loading="lazy"
@@ -432,11 +469,11 @@ function render(){
  a.gf+=g.ag;a.ga+=g.hg;
 
  if(g.hg>g.ag){
- h.w++;a.l++;h.pts+=3;
+  h.w++;a.l++;h.pts+=3;
  }else if(g.hg<g.ag){
- a.w++;h.l++;a.pts+=3;
+  a.w++;h.l++;a.pts+=3;
  }else{
- h.d++;a.d++;h.pts++;a.pts++;
+  h.d++;a.d++;h.pts++;a.pts++;
  }
  });
 
@@ -506,19 +543,11 @@ function save(){
 $("gameForm").addEventListener("submit",e=>{
  e.preventDefault();
 
- const result=$("result").value.trim();
- const match=result.match(/^(\d{1,2})\s*:\s*(\d{1,2})$/);
-
- if(!match){
- alert("Bitte ein Ergebnis wie 3:2 eingeben.");
- return;
- }
-
  const g={
  h:+$("home").value,
  a:+$("away").value,
- hg:Number(match[1]),
- ag:Number(match[2])
+ hg:+$("hg").value,
+ ag:+$("ag").value
  };
 
  if(!valid(g)){
@@ -528,7 +557,8 @@ $("gameForm").addEventListener("submit",e=>{
 
  games.push(g);
  save();
- $("result").value="";
+ $("hg").value="0";
+ $("ag").value="0";
 });
 
 $("home").addEventListener("change",updatePick);
@@ -589,6 +619,7 @@ $("importFile").addEventListener("change",async e=>{
  e.target.value="";
 });
 
+// Mannschaftsauswahl
 const opts=teams.map((t,i)=>
  `<option value="${i}">${esc(t[0])}</option>`
 ).join("");
@@ -596,6 +627,14 @@ const opts=teams.map((t,i)=>
 $("home").innerHTML=opts;
 $("away").innerHTML=opts;
 $("away").selectedIndex=1;
+
+// Kompakte Ergebnis-Dropdowns 0 bis 15
+const goalOptions=Array.from({length:16},(_,i)=>
+ `<option value="${i}">${i}</option>`
+).join("");
+
+$("hg").innerHTML=goalOptions;
+$("ag").innerHTML=goalOptions;
 
 updatePick();
 render();

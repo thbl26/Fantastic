@@ -3,10 +3,10 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fantastic League 2026/27</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fantastic League</title>
 <style>
-:root {
+:root{
  --bg:#081123;
  --panel:#142340;
  --border:#304665;
@@ -24,8 +24,8 @@ body{
 }
 header{text-align:center;padding:38px 12px 25px}
 h1{
- font-size:clamp(32px,6vw,62px);
- letter-spacing:3px;
+ font-size:clamp(30px,6vw,62px);
+ letter-spacing:2px;
  margin:0;
  color:#75ebd1;
 }
@@ -41,7 +41,7 @@ main{max-width:1200px;margin:auto;padding:0 15px 60px}
 h2{margin:0 0 18px;font-size:22px}
 .form{
  display:grid;
- grid-template-columns:1fr 1fr 85px 85px auto;
+ grid-template-columns:1fr 1fr 130px auto;
  gap:10px;
  align-items:end;
 }
@@ -60,7 +60,6 @@ select,input,button{
  font:inherit;
  min-width:0;
 }
-input[type=number]{width:100%}
 button{
  background:#168f7c;
  border-color:#3bc3a7;
@@ -70,10 +69,19 @@ button{
 button:hover{filter:brightness(1.15)}
 button.secondary{background:#304567}
 button.danger{background:#76354a}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.actions{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+ margin-top:15px;
+}
 .muted{color:var(--muted);font-size:13px}
 .tablewrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;white-space:nowrap}
+table{
+ border-collapse:collapse;
+ width:100%;
+ white-space:nowrap;
+}
 th,td{
  padding:10px;
  text-align:center;
@@ -87,19 +95,25 @@ td.team,th.team{text-align:left}
  height:31px;
  object-fit:contain;
  vertical-align:middle;
- margin-right:9px;
+ margin-right:8px;
 }
 .logo.big{width:43px;height:43px}
 .fallback{
  display:inline-grid;
  place-items:center;
- width:31px;height:31px;
+ width:31px;
+ height:31px;
  border-radius:50%;
  background:#35537d;
  font-size:11px;
  font-weight:bold;
- margin-right:9px;
+ margin-right:8px;
  vertical-align:middle;
+}
+.logoWrap{
+ display:inline-flex;
+ align-items:center;
+ flex-shrink:0;
 }
 .clubgrid{
  display:grid;
@@ -130,11 +144,33 @@ td.team,th.team{text-align:left}
  justify-content:center;
  gap:12px;
 }
-.side{flex:1;display:flex;align-items:center;gap:7px}
-.side.home{justify-content:flex-end;text-align:right}
-.side.away{justify-content:flex-start;text-align:left}
-.score{font-weight:900;font-size:19px;white-space:nowrap}
-.tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+.side{
+ flex:1;
+ display:flex;
+ align-items:center;
+ gap:7px;
+}
+.side.home{
+ justify-content:flex-end;
+ text-align:right;
+}
+.side.away{
+ justify-content:flex-start;
+ text-align:left;
+}
+.score{
+ font-weight:900;
+ font-size:19px;
+ white-space:nowrap;
+ color:var(--green);
+}
+.tools{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ flex-wrap:wrap;
+ margin-bottom:15px;
+}
 .tools input{flex:1;min-width:150px}
 .pill{
  border:1px solid #3e6177;
@@ -152,8 +188,22 @@ td.team,th.team{text-align:left}
  border-radius:9px;
  padding:5px 9px;
 }
-.pick select{flex:1;border:0;background:transparent}
-.pick .logo{width:27px;height:27px;margin:0}
+.pick select{
+ flex:1;
+ border:0;
+ background:transparent;
+}
+.pick .logo{
+ width:27px;
+ height:27px;
+ margin:0;
+}
+.resultInput{
+ text-align:center;
+ font-size:20px;
+ font-weight:800;
+ width:100%;
+}
 @media(max-width:760px){
  .form{grid-template-columns:1fr 1fr}
  .form button{grid-column:span 2}
@@ -165,6 +215,7 @@ td.team,th.team{text-align:left}
 }
 </style>
 </head>
+
 <body>
 <header>
 <div style="font-size:35px">🏆 ⚽ 🏆</div>
@@ -173,38 +224,70 @@ td.team,th.team{text-align:left}
 </header>
 
 <main>
+
+<!-- SPIEL ERSTELLEN -->
 <section class="panel">
 <h2>⚽ Spiel eintragen</h2>
 <form id="gameForm" class="form">
+
 <div>
-<label>Heimteam</label>
+<label for="home">Heimteam</label>
 <div class="pick">
 <span id="homeLogo"></span>
 <select id="home"></select>
 </div>
 </div>
+
 <div>
-<label>Auswärtsteam</label>
+<label for="away">Auswärtsteam</label>
 <div class="pick">
 <span id="awayLogo"></span>
 <select id="away"></select>
 </div>
 </div>
+
 <div>
-<label>Heimtore</label>
-<input id="hg" type="number" min="0" max="99" required>
+<label for="result">Ergebnis</label>
+<input
+ id="result"
+ class="resultInput"
+ type="text"
+ placeholder="3:2"
+ inputmode="text"
+ required
+>
 </div>
-<div>
-<label>Auswärtstore</label>
-<input id="ag" type="number" min="0" max="99" required>
-</div>
+
 <button type="submit">Spiel speichern</button>
 </form>
 <p class="muted">
-Alle Begegnungen werden von dir selbst festgelegt.
+Du kannst alle Begegnungen selbst bestimmen.
 </p>
 </section>
 
+<!-- ERGEBNISSE -->
+<section class="panel">
+<h2>📅 Spiele & Ergebnisse</h2>
+<div id="matches"></div>
+<div class="actions">
+<button id="exportBtn" class="secondary">💾 Daten sichern</button>
+<button id="importBtn" class="secondary">📂 Daten importieren</button>
+<input id="importFile" type="file" accept=".json" hidden>
+<button id="resetBtn" class="danger">Alle Spiele löschen</button>
+</div>
+</section>
+
+<!-- MANNSCHAFTEN -->
+<section class="panel">
+<h2>🛡️ Mannschaften</h2>
+<div class="tools">
+<input id="search" placeholder="Mannschaft suchen ...">
+<span id="teamCount" class="pill"></span>
+</div>
+<div id="clubs" class="clubgrid"></div>
+</section>
+
+<!-- TABELLE GANZ UNTEN -->
 <section class="panel">
 <div class="tools">
 <h2 style="margin:0">📊 Tabelle</h2>
@@ -230,25 +313,6 @@ Alle Begegnungen werden von dir selbst festgelegt.
 </div>
 </section>
 
-<section class="panel">
-<h2>📅 Ergebnisse</h2>
-<div id="matches"></div>
-<div class="actions">
-<button id="exportBtn" class="secondary">💾 Daten sichern</button>
-<button id="importBtn" class="secondary">📂 Daten importieren</button>
-<input id="importFile" type="file" accept=".json" hidden>
-<button id="resetBtn" class="danger">Alle Spiele löschen</button>
-</div>
-</section>
-
-<section class="panel">
-<h2>🛡️ Mannschaften</h2>
-<div class="tools">
-<input id="search" placeholder="Mannschaft suchen ...">
-<span id="teamCount" class="pill"></span>
-</div>
-<div id="clubs" class="clubgrid"></div>
-</section>
 </main>
 
 <script>
@@ -317,11 +381,6 @@ const KEY="fantastic-league-v1";
 const $=id=>document.getElementById(id);
 let games=[];
 
-try{
- const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
- if(Array.isArray(saved))games=saved.filter(valid);
-}catch(e){}
-
 function valid(g){
  return g&&
  Number.isInteger(g.h)&&Number.isInteger(g.a)&&
@@ -330,6 +389,11 @@ function valid(g){
  Number.isInteger(g.hg)&&Number.isInteger(g.ag)&&
  g.hg>=0&&g.ag>=0&&g.hg<=99&&g.ag<=99;
 }
+
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))games=saved.filter(valid);
+}catch(e){}
 
 function esc(s){
  return String(s).replace(/[&<>"']/g,c=>({
@@ -342,11 +406,10 @@ function logo(i,big=false){
  const name=teams[i][0];
  const domain=teams[i][1];
  const initials=name.split(" ").map(w=>w[0]).join("").slice(0,3).toUpperCase();
- const fallback=`<span class="fallback">${esc(initials)}</span>`;
  const url="https://www.google.com/s2/favicons?domain="+encodeURIComponent(domain)+"&sz=128";
- return `<span class="logoWrap" style="display:inline-flex;align-items:center">
- <img class="logo ${big?'big':''}" src="${url}"
- alt="${esc(name)}" loading="lazy"
+ return `<span class="logoWrap">
+ <img class="logo ${big?'big':''}"
+ src="${url}" alt="${esc(name)}" loading="lazy"
  onerror="this.style.display='none';this.nextElementSibling.style.display='inline-grid'">
  <span class="fallback" style="display:none">${esc(initials)}</span>
  </span>`;
@@ -367,9 +430,14 @@ function render(){
  h.p++;a.p++;
  h.gf+=g.hg;h.ga+=g.ag;
  a.gf+=g.ag;a.ga+=g.hg;
- if(g.hg>g.ag){h.w++;a.l++;h.pts+=3}
- else if(g.hg<g.ag){a.w++;h.l++;a.pts+=3}
- else{h.d++;a.d++;h.pts++;a.pts++}
+
+ if(g.hg>g.ag){
+ h.w++;a.l++;h.pts+=3;
+ }else if(g.hg<g.ag){
+ a.w++;h.l++;a.pts+=3;
+ }else{
+ h.d++;a.d++;h.pts++;a.pts++;
+ }
  });
 
  rows.sort((a,b)=>
@@ -418,32 +486,49 @@ function showClubs(){
  const q=$("search").value.toLowerCase();
  const found=teams.map((t,i)=>({t,i}))
  .filter(x=>x.t[0].toLowerCase().includes(q));
+
  $("teamCount").textContent=found.length+" / "+teams.length;
+
  $("clubs").innerHTML=found.map(x=>`
  <div class="club">${logo(x.i,true)} ${esc(x.t[0])}</div>
  `).join("");
 }
 
 function save(){
- try{localStorage.setItem(KEY,JSON.stringify(games))}
- catch(e){alert("Speichern nicht möglich.")}
+ try{
+ localStorage.setItem(KEY,JSON.stringify(games));
+ }catch(e){
+ alert("Speichern nicht möglich.");
+ }
  render();
 }
 
 $("gameForm").addEventListener("submit",e=>{
  e.preventDefault();
- const g={
- h:+$("home").value,a:+$("away").value,
- hg:+$("hg").value,ag:+$("ag").value
- };
- if(!valid(g)||$("hg").value===""||$("ag").value===""){
- alert("Bitte gültige Mannschaften und Ergebnisse eingeben.");
+
+ const result=$("result").value.trim();
+ const match=result.match(/^(\d{1,2})\s*:\s*(\d{1,2})$/);
+
+ if(!match){
+ alert("Bitte ein Ergebnis wie 3:2 eingeben.");
  return;
  }
+
+ const g={
+ h:+$("home").value,
+ a:+$("away").value,
+ hg:Number(match[1]),
+ ag:Number(match[2])
+ };
+
+ if(!valid(g)){
+ alert("Bitte zwei unterschiedliche Mannschaften auswählen.");
+ return;
+ }
+
  games.push(g);
  save();
- $("hg").value="";
- $("ag").value="";
+ $("result").value="";
 });
 
 $("home").addEventListener("change",updatePick);
@@ -452,22 +537,28 @@ $("search").addEventListener("input",showClubs);
 
 $("matches").addEventListener("click",e=>{
  const b=e.target.closest("[data-del]");
- if(b&&confirm("Spiel löschen?")){
+ if(b&&confirm("Dieses Spiel löschen?")){
  games.splice(+b.dataset.del,1);
  save();
  }
 });
 
 $("resetBtn").addEventListener("click",()=>{
- if(confirm("Wirklich alle Ergebnisse löschen?")){
- games=[];save();
+ if(confirm("Wirklich alle Spiele löschen?")){
+ games=[];
+ save();
  }
 });
 
 $("exportBtn").addEventListener("click",()=>{
  const blob=new Blob([
- JSON.stringify({app:"Fantastic League",version:1,games},null,2)
+ JSON.stringify({
+ app:"Fantastic League",
+ version:1,
+ games
+ },null,2)
  ],{type:"application/json"});
+
  const a=document.createElement("a");
  a.href=URL.createObjectURL(blob);
  a.download="fantastic-league-sicherung.json";
@@ -480,23 +571,32 @@ $("importBtn").addEventListener("click",()=>$("importFile").click());
 $("importFile").addEventListener("change",async e=>{
  const file=e.target.files[0];
  if(!file)return;
+
  try{
  const data=JSON.parse(await file.text());
+
  if(data.app!=="Fantastic League"||
  !Array.isArray(data.games)||
  !data.games.every(valid))throw Error();
+
  if(confirm("Aktuelle Ergebnisse ersetzen?")){
- games=data.games;save();
+ games=data.games;
+ save();
  }
- }catch(err){alert("Ungültige Sicherungsdatei.")}
+ }catch(err){
+ alert("Ungültige Sicherungsdatei.");
+ }
  e.target.value="";
 });
 
 const opts=teams.map((t,i)=>
- `<option value="${i}">${esc(t[0])}</option>`).join("");
+ `<option value="${i}">${esc(t[0])}</option>`
+).join("");
+
 $("home").innerHTML=opts;
 $("away").innerHTML=opts;
 $("away").selectedIndex=1;
+
 updatePick();
 render();
 </script>

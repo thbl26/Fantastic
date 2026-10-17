@@ -1,203 +1,214 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fantastic League</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fantastic League 2026/27</title>
 <style>
 :root {
-  color-scheme:dark;
-  --bg:#090f22;
-  --panel:#14203a;
-  --line:#2a3957;
-  --accent:#70e6ce;
-  --text:#f5f8ff;
-  --muted:#a9b8d0;
+ --bg:#081123;
+ --panel:#142340;
+ --border:#304665;
+ --text:#f6f9ff;
+ --muted:#afc0d8;
+ --green:#52e0ba;
 }
-* {box-sizing:border-box}
-body {
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;
-  background:radial-gradient(ellipse at top,#233b67,#090f22 65%);
-  color:var(--text);
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:system-ui,-apple-system,Arial,sans-serif;
+ background:linear-gradient(150deg,#182e55,#081123 65%);
+ color:var(--text);
+ min-height:100vh;
 }
-header {text-align:center;padding:38px 16px 20px}
-h1 {
-  font-size:clamp(32px,6vw,64px);
-  letter-spacing:.07em;
-  margin:0;
-  background:linear-gradient(110deg,#fff,#73e9d5);
-  background-clip:text;
-  color:transparent;
+header{text-align:center;padding:38px 12px 25px}
+h1{
+ font-size:clamp(32px,6vw,62px);
+ letter-spacing:3px;
+ margin:0;
+ color:#75ebd1;
 }
-header p {color:var(--muted)}
-main {max-width:1200px;margin:auto;padding:0 16px 60px}
-.panel {
-  background:#14203aee;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:20px;
-  margin:18px 0;
-  box-shadow:0 10px 35px #0002;
+header p{color:var(--muted)}
+main{max-width:1200px;margin:auto;padding:0 15px 60px}
+.panel{
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:20px;
+ margin-bottom:20px;
 }
-h2 {margin:0 0 17px;font-size:22px}
-.form {
-  display:grid;
-  grid-template-columns:1fr 1fr 90px 90px auto;
-  gap:10px;
-  align-items:end;
+h2{margin:0 0 18px;font-size:22px}
+.form{
+ display:grid;
+ grid-template-columns:1fr 1fr 85px 85px auto;
+ gap:10px;
+ align-items:end;
 }
-label {
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:6px;
+label{
+ display:block;
+ color:var(--muted);
+ font-size:13px;
+ margin-bottom:6px;
 }
-select,input,button {
-  font:inherit;
-  border-radius:10px;
-  padding:11px;
-  border:1px solid #3d5071;
-  background:#0b1730;
-  color:white;
-  min-width:0;
+select,input,button{
+ background:#09172d;
+ color:white;
+ border:1px solid #425777;
+ border-radius:9px;
+ padding:11px;
+ font:inherit;
+ min-width:0;
 }
-input[type=number] {width:100%}
-button {
-  background:#1e8f80;
-  border-color:#33b9a5;
-  cursor:pointer;
-  font-weight:650;
+input[type=number]{width:100%}
+button{
+ background:#168f7c;
+ border-color:#3bc3a7;
+ cursor:pointer;
+ font-weight:700;
 }
-button:hover {filter:brightness(1.15)}
-button.secondary {background:#263755;border-color:#405475}
-button.danger {background:#662c41;border-color:#a94761}
-.actions {display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.muted {color:var(--muted);font-size:13px}
-.tablewrap {overflow:auto}
-table {width:100%;border-collapse:collapse;white-space:nowrap}
-th,td {
-  padding:11px 10px;
-  text-align:center;
-  border-bottom:1px solid var(--line);
+button:hover{filter:brightness(1.15)}
+button.secondary{background:#304567}
+button.danger{background:#76354a}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.muted{color:var(--muted);font-size:13px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;white-space:nowrap}
+th,td{
+ padding:10px;
+ text-align:center;
+ border-bottom:1px solid var(--border);
 }
-th {font-size:12px;color:#a9bddb;text-transform:uppercase}
-td.team,th.team {text-align:left}
-tr:hover td {background:#ffffff08}
-.fallback {
-  display:inline-grid;
-  place-items:center;
-  width:27px;
-  height:27px;
-  border-radius:50%;
-  background:#314b74;
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  margin-right:8px;
-  vertical-align:middle;
+th{color:var(--muted);font-size:12px}
+td.team,th.team{text-align:left}
+.pos{font-weight:800;color:var(--green)}
+.logo{
+ width:31px;
+ height:31px;
+ object-fit:contain;
+ vertical-align:middle;
+ margin-right:9px;
 }
-.pos {font-weight:800;color:var(--accent)}
-.score {font-weight:800;font-size:18px}
-.match {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid var(--line);
+.logo.big{width:43px;height:43px}
+.fallback{
+ display:inline-grid;
+ place-items:center;
+ width:31px;height:31px;
+ border-radius:50%;
+ background:#35537d;
+ font-size:11px;
+ font-weight:bold;
+ margin-right:9px;
+ vertical-align:middle;
 }
-.match .teams {
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+.clubgrid{
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+ gap:10px;
 }
-.match .side {flex:1;min-width:110px}
-.match .side:first-child {text-align:right}
-.match .side:last-child {text-align:left}
-.match .side .fallback {width:24px;height:24px}
-.match .score {white-space:nowrap}
-.clubs {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:9px;
+.club{
+ display:flex;
+ align-items:center;
+ background:#0b1933;
+ border:1px solid var(--border);
+ border-radius:12px;
+ padding:10px;
+ min-height:60px;
 }
-.club {
-  background:#0c1932;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:9px;
-  display:flex;
-  align-items:center;
-  font-size:14px;
+.match{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ border-bottom:1px solid var(--border);
+ padding:12px 0;
 }
-.tools {
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  margin-bottom:15px;
+.matchteams{
+ flex:1;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:12px;
 }
-.tools input {flex:1;min-width:180px}
-.pill {
-  border:1px solid #365274;
-  color:#9de9dd;
-  border-radius:100px;
-  padding:5px 12px;
-  font-size:13px;
+.side{flex:1;display:flex;align-items:center;gap:7px}
+.side.home{justify-content:flex-end;text-align:right}
+.side.away{justify-content:flex-start;text-align:left}
+.score{font-weight:900;font-size:19px;white-space:nowrap}
+.tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:15px}
+.tools input{flex:1;min-width:150px}
+.pill{
+ border:1px solid #3e6177;
+ border-radius:30px;
+ color:#9af0dc;
+ padding:5px 12px;
+ font-size:13px;
 }
-@media(max-width:760px) {
-  .form {grid-template-columns:1fr 1fr}
-  .form button {grid-column:span 2}
-  .panel {padding:14px}
-  .match .side {min-width:70px;font-size:12px}
-  .match .teams {gap:5px}
-  th,td {padding:9px 7px}
+.pick{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ background:#09172d;
+ border:1px solid #425777;
+ border-radius:9px;
+ padding:5px 9px;
+}
+.pick select{flex:1;border:0;background:transparent}
+.pick .logo{width:27px;height:27px;margin:0}
+@media(max-width:760px){
+ .form{grid-template-columns:1fr 1fr}
+ .form button{grid-column:span 2}
+ .panel{padding:13px}
+ .matchteams{gap:6px}
+ .side{font-size:12px;flex-wrap:wrap}
+ .logo{width:25px;height:25px}
+ th,td{padding:9px 7px}
 }
 </style>
 </head>
 <body>
 <header>
-<div style="font-size:32px">🏆 ⚽ 🏆</div>
+<div style="font-size:35px">🏆 ⚽ 🏆</div>
 <h1>FANTASTIC LEAGUE</h1>
-<p>Deine Liga. Deine Spiele. Deine Meisterschaft.</p>
+<p>Deine Liga · Deine Spiele · Deine Meisterschaft</p>
 </header>
 
 <main>
 <section class="panel">
-<h2>⚽ Neues Spiel eintragen</h2>
-<form id="form" class="form">
+<h2>⚽ Spiel eintragen</h2>
+<form id="gameForm" class="form">
 <div>
-<label for="home">Heimteam</label>
-<select id="home" required></select>
+<label>Heimteam</label>
+<div class="pick">
+<span id="homeLogo"></span>
+<select id="home"></select>
+</div>
 </div>
 <div>
-<label for="away">Auswärtsteam</label>
-<select id="away" required></select>
+<label>Auswärtsteam</label>
+<div class="pick">
+<span id="awayLogo"></span>
+<select id="away"></select>
+</div>
 </div>
 <div>
-<label for="hg">Heimtore</label>
-<input id="hg" type="number" min="0" max="99" required placeholder="0">
+<label>Heimtore</label>
+<input id="hg" type="number" min="0" max="99" required>
 </div>
 <div>
-<label for="ag">Auswärtstore</label>
-<input id="ag" type="number" min="0" max="99" required placeholder="0">
+<label>Auswärtstore</label>
+<input id="ag" type="number" min="0" max="99" required>
 </div>
 <button type="submit">Spiel speichern</button>
 </form>
 <p class="muted">
-Du entscheidest selbst, welche Mannschaften gegeneinander spielen.
-Es gibt keine vorgegebenen Partien.
+Alle Begegnungen werden von dir selbst festgelegt.
 </p>
 </section>
 
 <section class="panel">
 <div class="tools">
 <h2 style="margin:0">📊 Tabelle</h2>
-<span class="pill" id="counter"></span>
+<span class="pill" id="count"></span>
 </div>
 <div class="tablewrap">
 <table>
@@ -214,7 +225,7 @@ Es gibt keine vorgegebenen Partien.
 <th>Pkt.</th>
 </tr>
 </thead>
-<tbody id="standings"></tbody>
+<tbody id="table"></tbody>
 </table>
 </div>
 </section>
@@ -223,286 +234,271 @@ Es gibt keine vorgegebenen Partien.
 <h2>📅 Ergebnisse</h2>
 <div id="matches"></div>
 <div class="actions">
-<button class="secondary" id="export">💾 Daten sichern</button>
-<button class="secondary" id="importBtn">📂 Daten importieren</button>
-<input id="importFile" type="file" accept=".json,application/json" hidden>
-<button class="danger" id="reset">Alle Ergebnisse löschen</button>
+<button id="exportBtn" class="secondary">💾 Daten sichern</button>
+<button id="importBtn" class="secondary">📂 Daten importieren</button>
+<input id="importFile" type="file" accept=".json" hidden>
+<button id="resetBtn" class="danger">Alle Spiele löschen</button>
 </div>
-<p class="muted">
-Speicherung auf diesem Gerät im Browser.
-Mit „Daten sichern“ kannst du zusätzlich eine Sicherungsdatei erstellen.
-</p>
 </section>
 
 <section class="panel">
-<h2>🛡️ Alle 58 Mannschaften</h2>
+<h2>🛡️ Mannschaften</h2>
 <div class="tools">
-<input id="search" type="search" placeholder="Mannschaft suchen …">
-<span id="clubCount" class="pill"></span>
+<input id="search" placeholder="Mannschaft suchen ...">
+<span id="teamCount" class="pill"></span>
 </div>
-<div class="clubs" id="clubs"></div>
+<div id="clubs" class="clubgrid"></div>
 </section>
 </main>
 
 <script>
 const teams=[
-['Paris Saint-Germain','Paris Saint-Germain'],
-['LOSC Lille','Lille OSC'],
-['Olympique Lyon','Olympique Lyonnais'],
-['Olympique Marseille','Olympique de Marseille'],
-['RC Lens','RC Lens'],
-['Stade Rennes','Stade Rennais FC'],
-['AJ Auxerre','AJ Auxerre'],
-['RC Straßburg','RC Strasbourg Alsace'],
-['FC Toulouse','Toulouse FC'],
-['Stade Brest','Stade Brestois 29'],
-['Inter Mailand','Inter Milan'],
-['SSC Neapel','SSC Napoli'],
-['Juventus Turin','Juventus FC'],
-['AS Rom','AS Roma'],
-['Atalanta Bergamo','Atalanta BC'],
-['Como 1907','Como 1907'],
-['Lazio Rom','SS Lazio'],
-['Frosinone','Frosinone Calcio'],
-['AC Mailand','AC Milan'],
-['Cagliari','Cagliari Calcio'],
-['FC Barcelona','FC Barcelona'],
-['Real Madrid','Real Madrid CF'],
-['Atlético Madrid','Atlético de Madrid'],
-['Real Sociedad','Real Sociedad'],
-['Athletic Bilbao','Athletic Club'],
-['Villarreal','Villarreal CF'],
-['Osasuna','CA Osasuna'],
-['Espanyol Barcelona','RCD Espanyol'],
-['Real Betis','Real Betis Balompié'],
-['FC Sevilla','Sevilla FC'],
-['Manchester City','Manchester City FC'],
-['Arsenal','Arsenal FC'],
-['FC Porto','FC Porto'],
-['Benfica Lissabon','SL Benfica'],
-['Sporting Lissabon','Sporting CP'],
-['SC Braga','SC Braga'],
-['FC Arouca','FC Arouca'],
-['Chicago Fire','Chicago Fire FC'],
-['Philadelphia Union','Philadelphia Union'],
-['Orlando City','Orlando City SC'],
-['Atlanta United','Atlanta United FC'],
-['Inter Miami','Inter Miami CF'],
-['Beşiktaş','Beşiktaş JK'],
-['Galatasaray','Galatasaray SK'],
-['Fenerbahçe','Fenerbahçe SK'],
-['Trabzonspor','Trabzonspor'],
-['Çorum FK','Çorum FK'],
-['RB Salzburg','FC Red Bull Salzburg'],
-['Sturm Graz','SK Sturm Graz'],
-['Al-Nassr','Al Nassr FC'],
-['Al-Hilal','Al Hilal SFC'],
-['Al-Ahli','Al Ahli Saudi FC'],
-['Al-Qadsiah','Al Qadsiah FC'],
-['NK Domžale','NK Domzale'],
-['Slovan Bratislava','ŠK Slovan Bratislava'],
-['Dinamo Zagreb','GNK Dinamo Zagreb'],
-['NK Celje','NK Celje'],
-['Sabah FC','Sabah FC']
+["Paris Saint-Germain","psg.fr"],
+["LOSC Lille","losc.fr"],
+["Olympique Lyon","ol.fr"],
+["Olympique Marseille","om.fr"],
+["RC Lens","rclens.fr"],
+["Stade Rennes","staderennais.com"],
+["AJ Auxerre","aja.fr"],
+["RC Straßburg","rcstrasbourgalsace.fr"],
+["FC Toulouse","toulousefc.com"],
+["Stade Brest","sb29.bzh"],
+["Inter Mailand","inter.it"],
+["SSC Neapel","sscnapoli.it"],
+["Juventus Turin","juventus.com"],
+["AS Rom","asroma.com"],
+["Atalanta Bergamo","atalanta.it"],
+["Como 1907","comofootball.com"],
+["Lazio Rom","sslazio.it"],
+["Frosinone","frosinonecalcio.com"],
+["AC Mailand","acmilan.com"],
+["Cagliari","cagliaricalcio.com"],
+["FC Barcelona","fcbarcelona.com"],
+["Real Madrid","realmadrid.com"],
+["Atlético Madrid","atleticodemadrid.com"],
+["Real Sociedad","realsociedad.eus"],
+["Athletic Bilbao","athletic-club.eus"],
+["Villarreal","villarrealcf.es"],
+["Osasuna","osasuna.es"],
+["Espanyol Barcelona","rcdespanyol.com"],
+["Real Betis","realbetisbalompie.es"],
+["FC Sevilla","sevillafc.es"],
+["Manchester City","mancity.com"],
+["Arsenal","arsenal.com"],
+["FC Porto","fcporto.pt"],
+["Benfica Lissabon","slbenfica.pt"],
+["Sporting Lissabon","sporting.pt"],
+["SC Braga","scbraga.pt"],
+["FC Arouca","fcarouca.eu"],
+["Chicago Fire","chicagofirefc.com"],
+["Philadelphia Union","philadelphiaunion.com"],
+["Orlando City","orlandocitysc.com"],
+["Atlanta United","atlutd.com"],
+["Inter Miami","intermiamicf.com"],
+["Beşiktaş","bjk.com.tr"],
+["Galatasaray","galatasaray.org"],
+["Fenerbahçe","fenerbahce.org"],
+["Trabzonspor","trabzonspor.org.tr"],
+["Çorum FK","corumfk.com.tr"],
+["RB Salzburg","redbullsalzburg.at"],
+["Sturm Graz","sksturm.at"],
+["Al-Nassr","alnassr.sa"],
+["Al-Hilal","alhilal.com"],
+["Al-Ahli","alahlifc.sa"],
+["Al-Qadsiah","alqadsiah.com"],
+["NK Domžale","nkdomzale.si"],
+["Slovan Bratislava","skslovan.com"],
+["Dinamo Zagreb","gnkdinamo.hr"],
+["NK Celje","nk-celje.si"],
+["Sabah FC","sabahfc.az"]
 ];
 
-const key='fantastic-league-v1';
+const KEY="fantastic-league-v1";
+const $=id=>document.getElementById(id);
 let games=[];
 
-function validGame(g) {
- return g &&
- Number.isInteger(g.h) &&
- Number.isInteger(g.a) &&
- g.h>=0 && g.a>=0 &&
- g.h<teams.length && g.a<teams.length &&
- g.h!==g.a &&
- Number.isInteger(g.hg) &&
- Number.isInteger(g.ag) &&
- g.hg>=0 && g.ag>=0 &&
- g.hg<=99 && g.ag<=99;
+try{
+ const saved=JSON.parse(localStorage.getItem(KEY)||"[]");
+ if(Array.isArray(saved))games=saved.filter(valid);
+}catch(e){}
+
+function valid(g){
+ return g&&
+ Number.isInteger(g.h)&&Number.isInteger(g.a)&&
+ g.h>=0&&g.a>=0&&g.h<teams.length&&g.a<teams.length&&
+ g.h!==g.a&&
+ Number.isInteger(g.hg)&&Number.isInteger(g.ag)&&
+ g.hg>=0&&g.ag>=0&&g.hg<=99&&g.ag<=99;
 }
 
-try {
- const saved=JSON.parse(localStorage.getItem(key)||'[]');
- if(Array.isArray(saved)) games=saved.filter(validGame);
-} catch(e) {}
-
-const $=id=>document.getElementById(id);
-
-function escapeHTML(s) {
+function esc(s){
  return String(s).replace(/[&<>"']/g,c=>({
-  '&':'&amp;',
-  '<':'&lt;',
-  '>':'&gt;',
-  '"':'&quot;',
-  "'":'&#39;'
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
  })[c]);
 }
 
-function crest(i) {
+function logo(i,big=false){
  const name=teams[i][0];
- const abbr=name.split(/\s+/)
-  .map(x=>x[0]).join('').slice(0,3).toUpperCase();
- return `<span class="fallback" title="${escapeHTML(name)}">${escapeHTML(abbr)}</span>`;
+ const domain=teams[i][1];
+ const initials=name.split(" ").map(w=>w[0]).join("").slice(0,3).toUpperCase();
+ const fallback=`<span class="fallback">${esc(initials)}</span>`;
+ const url="https://www.google.com/s2/favicons?domain="+encodeURIComponent(domain)+"&sz=128";
+ return `<span class="logoWrap" style="display:inline-flex;align-items:center">
+ <img class="logo ${big?'big':''}" src="${url}"
+ alt="${esc(name)}" loading="lazy"
+ onerror="this.style.display='none';this.nextElementSibling.style.display='inline-grid'">
+ <span class="fallback" style="display:none">${esc(initials)}</span>
+ </span>`;
 }
 
-function init() {
- const opts=teams.map((t,i)=>
-  `<option value="${i}">${escapeHTML(t[0])}</option>`
- ).join('');
- $('home').innerHTML=opts;
- $('away').innerHTML=opts;
- $('away').selectedIndex=1;
- render();
+function updatePick(){
+ $("homeLogo").innerHTML=logo(+$("home").value);
+ $("awayLogo").innerHTML=logo(+$("away").value);
 }
 
-function render() {
- let rows=teams.map((t,i)=>({
-  i,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0
+function render(){
+ const rows=teams.map((t,i)=>({
+ i,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0
  }));
 
- for(const g of games) {
-  let h=rows[g.h],a=rows[g.a];
-  h.p++;a.p++;
-  h.gf+=g.hg;h.ga+=g.ag;
-  a.gf+=g.ag;a.ga+=g.hg;
-
-  if(g.hg>g.ag) {
-   h.w++;a.l++;h.pts+=3;
-  } else if(g.hg<g.ag) {
-   a.w++;h.l++;a.pts+=3;
-  } else {
-   h.d++;a.d++;h.pts++;a.pts++;
-  }
- }
+ games.forEach(g=>{
+ const h=rows[g.h],a=rows[g.a];
+ h.p++;a.p++;
+ h.gf+=g.hg;h.ga+=g.ag;
+ a.gf+=g.ag;a.ga+=g.hg;
+ if(g.hg>g.ag){h.w++;a.l++;h.pts+=3}
+ else if(g.hg<g.ag){a.w++;h.l++;a.pts+=3}
+ else{h.d++;a.d++;h.pts++;a.pts++}
+ });
 
  rows.sort((a,b)=>
-  b.pts-a.pts ||
-  ((b.gf-b.ga)-(a.gf-a.ga)) ||
-  b.gf-a.gf ||
-  teams[a.i][0].localeCompare(teams[b.i][0],'de')
+ b.pts-a.pts||
+ (b.gf-b.ga)-(a.gf-a.ga)||
+ b.gf-a.gf||
+ teams[a.i][0].localeCompare(teams[b.i][0],"de")
  );
 
- $('standings').innerHTML=rows.map((r,n)=>`
+ $("table").innerHTML=rows.map((r,n)=>`
  <tr>
  <td class="pos">${n+1}</td>
- <td class="team">${crest(r.i)}${escapeHTML(teams[r.i][0])}</td>
+ <td class="team">${logo(r.i)} ${esc(teams[r.i][0])}</td>
  <td>${r.p}</td>
  <td>${r.w}</td>
  <td>${r.d}</td>
  <td>${r.l}</td>
  <td>${r.gf}:${r.ga}</td>
- <td>${r.gf-r.ga>0?'+':''}${r.gf-r.ga}</td>
+ <td>${r.gf-r.ga>0?"+":""}${r.gf-r.ga}</td>
  <td><b>${r.pts}</b></td>
- </tr>`).join('');
+ </tr>`).join("");
 
- $('counter').textContent=games.length+' Spiele';
+ $("count").textContent=games.length+" Spiele";
 
- $('matches').innerHTML=games.length?
+ $("matches").innerHTML=games.length?
  games.map((g,i)=>`
  <div class="match">
  <span class="muted">${i+1}.</span>
- <div class="teams">
- <div class="side">${escapeHTML(teams[g.h][0])} ${crest(g.h)}</div>
- <span class="score">${g.hg} : ${g.ag}</span>
- <div class="side">${crest(g.a)} ${escapeHTML(teams[g.a][0])}</div>
+ <div class="matchteams">
+ <div class="side home">
+ ${logo(g.h)} ${esc(teams[g.h][0])}
  </div>
- <button class="danger" data-delete="${i}" aria-label="Spiel löschen">✕</button>
- </div>`).join(''):
- '<p class="muted">Noch keine Spiele eingetragen.</p>';
+ <span class="score">${g.hg} : ${g.ag}</span>
+ <div class="side away">
+ ${logo(g.a)} ${esc(teams[g.a][0])}
+ </div>
+ </div>
+ <button class="danger" data-del="${i}">✕</button>
+ </div>`).join(""):
+ '<p class="muted">Noch keine Ergebnisse vorhanden.</p>';
 
  showClubs();
 }
 
-function showClubs() {
- const q=$('search').value.trim().toLocaleLowerCase('de');
- const visible=teams.map((t,i)=>({t,i}))
-  .filter(x=>x.t[0].toLocaleLowerCase('de').includes(q));
-
- $('clubCount').textContent=visible.length+' / '+teams.length;
- $('clubs').innerHTML=visible.map(x=>`
- <div class="club">${crest(x.i)}${escapeHTML(x.t[0])}</div>
- `).join('');
+function showClubs(){
+ const q=$("search").value.toLowerCase();
+ const found=teams.map((t,i)=>({t,i}))
+ .filter(x=>x.t[0].toLowerCase().includes(q));
+ $("teamCount").textContent=found.length+" / "+teams.length;
+ $("clubs").innerHTML=found.map(x=>`
+ <div class="club">${logo(x.i,true)} ${esc(x.t[0])}</div>
+ `).join("");
 }
 
-function persist() {
- try {
-  localStorage.setItem(key,JSON.stringify(games));
- } catch(e) {
-  alert('Speichern im Browser nicht möglich. Bitte die Daten als Datei sichern.');
- }
+function save(){
+ try{localStorage.setItem(KEY,JSON.stringify(games))}
+ catch(e){alert("Speichern nicht möglich.")}
  render();
 }
 
-$('form').addEventListener('submit',e=>{
+$("gameForm").addEventListener("submit",e=>{
  e.preventDefault();
  const g={
-  h:+$('home').value,
-  a:+$('away').value,
-  hg:+$('hg').value,
-  ag:+$('ag').value
+ h:+$("home").value,a:+$("away").value,
+ hg:+$("hg").value,ag:+$("ag").value
  };
- if(!validGame(g)||$('hg').value===''||$('ag').value==='') {
-  alert('Bitte zwei unterschiedliche Mannschaften und gültige Tore (0–99) wählen.');
-  return;
+ if(!valid(g)||$("hg").value===""||$("ag").value===""){
+ alert("Bitte gültige Mannschaften und Ergebnisse eingeben.");
+ return;
  }
  games.push(g);
- persist();
- $('hg').value='';
- $('ag').value='';
+ save();
+ $("hg").value="";
+ $("ag").value="";
 });
 
-$('matches').addEventListener('click',e=>{
- const b=e.target.closest('[data-delete]');
- if(b&&confirm('Dieses Spiel wirklich löschen?')) {
-  games.splice(+b.dataset.delete,1);
-  persist();
+$("home").addEventListener("change",updatePick);
+$("away").addEventListener("change",updatePick);
+$("search").addEventListener("input",showClubs);
+
+$("matches").addEventListener("click",e=>{
+ const b=e.target.closest("[data-del]");
+ if(b&&confirm("Spiel löschen?")){
+ games.splice(+b.dataset.del,1);
+ save();
  }
 });
 
-$('search').addEventListener('input',showClubs);
-
-$('reset').addEventListener('click',()=>{
- if(confirm('Wirklich ALLE Ergebnisse unwiderruflich löschen?')) {
-  games=[];
-  persist();
+$("resetBtn").addEventListener("click",()=>{
+ if(confirm("Wirklich alle Ergebnisse löschen?")){
+ games=[];save();
  }
 });
 
-$('export').addEventListener('click',()=>{
+$("exportBtn").addEventListener("click",()=>{
  const blob=new Blob([
-  JSON.stringify({app:'Fantastic League',version:1,games},null,2)
- ],{type:'application/json'});
- const a=document.createElement('a');
+ JSON.stringify({app:"Fantastic League",version:1,games},null,2)
+ ],{type:"application/json"});
+ const a=document.createElement("a");
  a.href=URL.createObjectURL(blob);
- a.download='fantastic-league-sicherung.json';
+ a.download="fantastic-league-sicherung.json";
  a.click();
  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 });
 
-$('importBtn').addEventListener('click',()=>$('importFile').click());
+$("importBtn").addEventListener("click",()=>$("importFile").click());
 
-$('importFile').addEventListener('change',async e=>{
+$("importFile").addEventListener("change",async e=>{
  const file=e.target.files[0];
  if(!file)return;
- try {
-  const data=JSON.parse(await file.text());
-  if(data.app!=='Fantastic League' ||
-     !Array.isArray(data.games) ||
-     !data.games.every(validGame)) {
-   throw Error('Ungültige Datei');
-  }
-  if(confirm('Aktuelle Ergebnisse durch die Sicherung ersetzen?')) {
-   games=data.games;
-   persist();
-  }
- } catch(err) {
-  alert('Diese Datei ist keine gültige Fantastic-League-Sicherung.');
+ try{
+ const data=JSON.parse(await file.text());
+ if(data.app!=="Fantastic League"||
+ !Array.isArray(data.games)||
+ !data.games.every(valid))throw Error();
+ if(confirm("Aktuelle Ergebnisse ersetzen?")){
+ games=data.games;save();
  }
- e.target.value='';
+ }catch(err){alert("Ungültige Sicherungsdatei.")}
+ e.target.value="";
 });
 
-init();
+const opts=teams.map((t,i)=>
+ `<option value="${i}">${esc(t[0])}</option>`).join("");
+$("home").innerHTML=opts;
+$("away").innerHTML=opts;
+$("away").selectedIndex=1;
+updatePick();
+render();
 </script>
 </body>
 </html>
